@@ -14,7 +14,7 @@ public class Handler {
     }
 
     public List<Digitation> getAllDigitationList() {
-        return dw3dg.getDigitation();
+        return dw3dg.getAllDigitation();
     }
 
     public List<Digitation> getDigitationList(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String vordigitation2) {

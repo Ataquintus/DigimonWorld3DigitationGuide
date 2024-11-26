@@ -36,6 +36,30 @@ public class DBSteuerung {
         return partnerList;
     }
 
+    public List<Digitation> getAllDigitation() {
+        List<Digitation> digitationList = new ArrayList<>();
+        String query = "SELECT * FROM (hier join einfügen)";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Digitation digitation = new Digitation(
+                        rs.getString("Partnername"),
+                        rs.getString("Digitationsname"),
+                        rs.getString("Digitationsstufe"),
+                        rs.getString("Vordigitation1"),
+                        rs.getString("Level1"),
+                        rs.getString("Vordigitation2"),
+                        rs.getString("Level2"),
+                        rs.getString("Wertebedingung")
+                );
+                digitationList.add(digitation);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return digitationList;
+    }
+
     public List<Digitation> getDigitation(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String vordigitation2) {
         List<Digitation> digitationList = new ArrayList<>();
         String query = "SELECT * FROM (hier join einfügen) WHERE Partnername = ? OR Digitationsname = ? OR Digitationsstufe = ? OR Vordigitation1 = ? OR Vordigitation2 = ?";

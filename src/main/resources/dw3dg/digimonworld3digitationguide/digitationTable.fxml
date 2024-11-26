@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DigitationTableController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: lightgrey;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dw3dg.digimonworld3digitationguide.Controller.DigitationTableController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -38,7 +38,7 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </HBox>
-                  <Button fx:id="suchenButton" mnemonicParsing="false" style="-fx-background-color: #00ff00;" text="Suchen">
+                  <Button fx:id="suchenButton" mnemonicParsing="false" onAction="#suchenButton_Action" style="-fx-background-color: #00ff00;" text="Suchen">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -47,7 +47,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="400.0">
                            <children>
-                              <Button fx:id="guidesButton" mnemonicParsing="false" style="-fx-background-color: #0000ff;" text="Guides" textFill="WHITE">
+                              <Button fx:id="guidesButton" mnemonicParsing="false" onAction="#guidesButton_Action" style="-fx-background-color: #0000ff;" text="Guides" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
@@ -59,7 +59,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="400.0">
                            <children>
-                              <Button fx:id="beendenButton" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Beenden" textFill="WHITE">
+                              <Button fx:id="beendenButton" mnemonicParsing="false" onAction="#beendenButton_Action" style="-fx-background-color: #ff0000;" text="Beenden" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="20.0" />
                                  </font>
