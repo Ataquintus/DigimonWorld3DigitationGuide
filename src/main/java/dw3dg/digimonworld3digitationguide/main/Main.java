@@ -10,8 +10,8 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("digitationTable.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Digimon World 3 Digitation Guide");
         stage.setScene(scene);
         stage.show();
