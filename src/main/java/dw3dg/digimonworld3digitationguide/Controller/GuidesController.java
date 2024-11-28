@@ -39,21 +39,21 @@ public class GuidesController {
 
     @FXML
     public void backButton_Action(ActionEvent event) {
-        Platform.runLater(new Runnable() {
-            public void run() {
-                Stage stage = new Stage();
-                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("digitationsTable.fxml"));
-                Scene scene = null;
-                try {
-                    scene = new Scene(fxmlLoader.load(), 800, 600);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                stage.setTitle("Digimon World 3 Digitation Guide");
-                stage.setScene(scene);
-                stage.show();
-            }
-        });
+//        Platform.runLater(new Runnable() {
+//            public void run() {
+//                Stage stage = new Stage();
+//                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("digitationsTable.fxml"));
+//                Scene scene = null;
+//                try {
+//                    scene = new Scene(fxmlLoader.load(), 800, 600);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                stage.setTitle("Digimon World 3 Digitation Guide");
+//                stage.setScene(scene);
+//                stage.show();
+//            }
+//        });
     }
 
     @FXML
