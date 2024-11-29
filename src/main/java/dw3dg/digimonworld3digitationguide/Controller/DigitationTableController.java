@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -48,6 +49,30 @@ public class DigitationTableController implements Initializable {
 
     @FXML
     private TableView<Digitation> tableView;
+
+    @FXML
+    private TableColumn<Digitation, String> partnernameColumn;
+
+    @FXML
+    private TableColumn<Digitation, String> digitationsnameColumn;
+
+    @FXML
+    private TableColumn<Digitation, String> digitationsstufeColumn;
+
+    @FXML
+    private TableColumn<Digitation, String> vordigitation1Column;
+
+    @FXML
+    private TableColumn<Digitation, String> level1Column;
+
+    @FXML
+    private TableColumn<Digitation, String> vordigitation2Column;
+
+    @FXML
+    private TableColumn<Digitation, String> level2Column;
+
+    @FXML
+    private TableColumn<Digitation, String> wertebedingungColumn;
 
     @FXML
     private TextField vordigitationField;
@@ -87,6 +112,14 @@ public class DigitationTableController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        partnernameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getPartnername()));
+        digitationsnameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDigitationsname()));
+        digitationsstufeColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getDigitationsstufe()));
+        vordigitation1Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getVordigitation1()));
+        level1Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getLevel1()));
+        vordigitation2Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getVordigitation2()));
+        level2Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getLevel2()));
+        wertebedingungColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getWertebedingung()));
         tableView.getItems().addAll(handler.getAllDigitationList());
     }
 }

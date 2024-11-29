@@ -10,7 +10,7 @@ public class Handler {
     private DBSteuerung dw3dg;
 
     public Handler() {
-        this.dw3dg = new DBSteuerung("dw3dg.db");
+        this.dw3dg = new DBSteuerung("src/main/resources/dw3dg/digimonworld3digitationguide/dw3dg.db");
     }
 
     public List<Digitation> getAllDigitationList() {

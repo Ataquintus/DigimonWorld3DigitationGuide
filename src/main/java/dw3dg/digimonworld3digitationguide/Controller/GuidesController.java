@@ -9,12 +9,13 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class GuidesController {
+public class GuidesController implements Initializable {
 
     @FXML
     private ResourceBundle resources;
@@ -62,5 +63,5 @@ public class GuidesController {
     }
 
     @FXML
-    void initialize(URL url, ResourceBundle rb) {}
+    public void initialize(URL url, ResourceBundle rb) {}
 }
