@@ -79,30 +79,34 @@ public class DigitationTableController implements Initializable {
 
     @FXML
     public void suchenButton_Action(ActionEvent event) {
-        String partnername = partnernameField.getText();
-        String digitationsname = digitationsnameField.getText();
-        String digitationsstufe = digitationsstufeField.getText();
-        String vordigitation1 = vordigitationField.getText();
-        String vordigitation2 = vordigitationField.getText();
-        tableView.getItems().setAll(handler.getDigitationList(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2));
+        if (partnernameField.getText().isEmpty() && digitationsnameField.getText().isEmpty() && digitationsstufeField.getText().isEmpty() && vordigitationField.getText().isEmpty() && vordigitationField.getText().isEmpty()) {
+            tableView.getItems().setAll(handler.getAllDigitationList());
+        } else {
+            String partnername = partnernameField.getText();
+            String digitationsname = digitationsnameField.getText();
+            String digitationsstufe = digitationsstufeField.getText();
+            String vordigitation1 = vordigitationField.getText();
+            String vordigitation2 = vordigitationField.getText();
+            tableView.getItems().setAll(handler.getDigitationList(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2));
+        }
     }
 
     public void guidesButton_Action(ActionEvent event) {
-//        Platform.runLater(new Runnable() {
-//            public void run() {
-//                Stage stage = new Stage();
-//                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("guides.fxml"));
-//                Scene scene = null;
-//                try {
-//                    scene = new Scene(fxmlLoader.load(), 800, 600);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                stage.setTitle("Digimon World 3 Digitation Guide");
-//                stage.setScene(scene);
-//                stage.show();
-//            }
-//        });
+        Platform.runLater(new Runnable() {
+            public void run() {
+                Stage stage = new Stage();
+                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/dw3dg/digimonworld3digitationguide/guides.fxml"));
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load(), 800, 600);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                stage.setTitle("Digimon World 3 Digitation Guide");
+                stage.setScene(scene);
+                stage.show();
+            }
+        });
     }
 
     @FXML

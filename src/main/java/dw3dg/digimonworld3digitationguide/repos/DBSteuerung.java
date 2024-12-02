@@ -122,6 +122,16 @@ public class DBSteuerung {
         return digitationList;
     }
 
+    public String getPartnerQuest(String partnername) {
+        String quest = "Hier steht dann die Quest für " + partnername;
+        return quest;
+    }
+
+    public String getCompleteGuide() {
+        String completeGuide = "Hier steht dann die Komplettlösung.";
+        return completeGuide;
+    }
+
     public void close() {
         try {
             if (connection != null) {

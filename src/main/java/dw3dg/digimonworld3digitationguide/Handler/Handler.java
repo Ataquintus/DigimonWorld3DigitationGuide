@@ -21,6 +21,14 @@ public class Handler {
         return dw3dg.getDigitation(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2);
     }
 
+    public String getPartnerQuest(String partnername) {
+        return dw3dg.getPartnerQuest(partnername);
+    }
+
+    public String getCompleteGuide() {
+        return dw3dg.getCompleteGuide();
+    }
+
     public void close() {
         dw3dg.close();
     }

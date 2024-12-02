@@ -1,21 +1,20 @@
 package dw3dg.digimonworld3digitationguide.Controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import dw3dg.digimonworld3digitationguide.main.Main;
-import javafx.application.Platform;
+import dw3dg.digimonworld3digitationguide.Handler.Handler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class GuidesController implements Initializable {
+
+    Handler handler = new Handler();
 
     @FXML
     private ResourceBundle resources;
@@ -36,25 +35,25 @@ public class GuidesController implements Initializable {
     private TextField partnerQuestField;
 
     @FXML
-    private Button walkthroughButton;
+    private Button completeGuideButton;
+
+    @FXML
+    private TextArea textAreaField;
 
     @FXML
     public void backButton_Action(ActionEvent event) {
-//        Platform.runLater(new Runnable() {
-//            public void run() {
-//                Stage stage = new Stage();
-//                FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("digitationsTable.fxml"));
-//                Scene scene = null;
-//                try {
-//                    scene = new Scene(fxmlLoader.load(), 800, 600);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                stage.setTitle("Digimon World 3 Digitation Guide");
-//                stage.setScene(scene);
-//                stage.show();
-//            }
-//        });
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void completeGuideButton_Action(ActionEvent event) {
+        textAreaField.setText(handler.getCompleteGuide());
+    }
+
+    @FXML
+    public void partnerQuestButton_Action(ActionEvent event) {
+        textAreaField.setText(handler.getPartnerQuest(partnerQuestField.getText()));
     }
 
     @FXML

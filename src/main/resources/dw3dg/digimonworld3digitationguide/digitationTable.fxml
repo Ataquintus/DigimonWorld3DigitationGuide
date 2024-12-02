@@ -23,7 +23,7 @@
                   <TableColumn fx:id="level1Column" editable="false" prefWidth="50.0" text="Level" />
                   <TableColumn fx:id="vordigitation2Column" editable="false" prefWidth="125.0" text="Vordigitation2" />
                   <TableColumn fx:id="level2Column" editable="false" prefWidth="50.0" text="Level" />
-                  <TableColumn fx:id="wertebedingungColumn" editable="false" prefWidth="175.0" text="Wertebedingungen" />
+                  <TableColumn fx:id="wertebedingungColumn" editable="false" prefWidth="150.0" text="Wertebedingungen" />
               </columns>
             </TableView>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="900.0" spacing="10.0">
