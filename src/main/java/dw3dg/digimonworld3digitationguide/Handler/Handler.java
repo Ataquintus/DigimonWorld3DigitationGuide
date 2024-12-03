@@ -1,6 +1,8 @@
 package dw3dg.digimonworld3digitationguide.Handler;
 
 import dw3dg.digimonworld3digitationguide.model.Digitation;
+import dw3dg.digimonworld3digitationguide.model.Guide;
+import dw3dg.digimonworld3digitationguide.model.Partner;
 import dw3dg.digimonworld3digitationguide.repos.DBSteuerung;
 
 import java.util.List;
@@ -21,12 +23,20 @@ public class Handler {
         return dw3dg.getDigitation(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2);
     }
 
-    public String getPartnerQuest(String partnername) {
+    public Partner getPartnerQuest(String partnername) {
         return dw3dg.getPartnerQuest(partnername);
     }
 
-    public String getCompleteGuide() {
-        return dw3dg.getCompleteGuide();
+    public Guide getGuide(String akt) {
+        return dw3dg.getGuide(akt);
+    }
+
+    public Guide getNextAkt() {
+        return dw3dg.getNextAkt();
+    }
+
+    public Guide getPreviousAkt() {
+        return dw3dg.getPreviousAkt();
     }
 
     public void close() {

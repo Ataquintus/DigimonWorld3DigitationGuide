@@ -1,8 +1,10 @@
 package dw3dg.digimonworld3digitationguide.repos;
 
 import dw3dg.digimonworld3digitationguide.model.Digitation;
+import dw3dg.digimonworld3digitationguide.model.Guide;
 import dw3dg.digimonworld3digitationguide.model.Partner;
 
+import java.security.PublicKey;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,24 +18,6 @@ public class DBSteuerung {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public List<Partner> getPartner() {
-        List<Partner> partnerList = new ArrayList<>();
-        String query = "SELECT * FROM Partner";
-        try (Statement stmt = connection.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                Partner partner = new Partner(
-                        rs.getString("Partnername"),
-                        rs.getString("Quest")
-                );
-                partnerList.add(partner);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return partnerList;
     }
 
     public List<Digitation> getAllDigitation() {
@@ -122,14 +106,40 @@ public class DBSteuerung {
         return digitationList;
     }
 
-    public String getPartnerQuest(String partnername) {
-        String quest = "Hier steht dann die Quest für " + partnername;
-        return quest;
+    public Partner getPartnerQuest(String partnername) {
+        String query = "SELECT * FROM Partner WHERE Partnername = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, partnername);
+            ResultSet rs = pstmt.executeQuery();
+            return new Partner(
+                        rs.getString("Partnername"),
+                        rs.getString("Quest")
+                );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    public String getCompleteGuide() {
-        String completeGuide = "Hier steht dann die Komplettlösung.";
-        return completeGuide;
+    public Guide getGuide(String akt) {
+        String query = "SELECT Guide FROM Guide WHERE GUIDE_ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, akt);
+            ResultSet rs = pstmt.executeQuery();
+            return new Guide(rs.getString("Guide")
+            );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Guide getNextAkt() {
+        return null;
+    }
+
+    public Guide getPreviousAkt() {
+        return null;
     }
 
     public void close() {
