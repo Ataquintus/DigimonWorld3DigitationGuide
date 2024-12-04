@@ -4,7 +4,6 @@ import dw3dg.digimonworld3digitationguide.model.Digitation;
 import dw3dg.digimonworld3digitationguide.model.Guide;
 import dw3dg.digimonworld3digitationguide.model.Partner;
 
-import java.security.PublicKey;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -106,27 +105,34 @@ public class DBSteuerung {
         return digitationList;
     }
 
-    public Partner getPartnerQuest(String partnername) {
-        String query = "SELECT * FROM Partner WHERE Partnername = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, partnername);
-            ResultSet rs = pstmt.executeQuery();
-            return new Partner(
+    public List<Partner> getPartnerQuestMenu() {
+        List<Partner> allQuests = new ArrayList<>();
+        String query = "SELECT * FROM Partner";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Partner partner = new Partner(
+                        rs.getInt("Partner_ID"),
                         rs.getString("Partnername"),
                         rs.getString("Quest")
                 );
+                allQuests.add(partner);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return allQuests;
     }
 
-    public Guide getGuide(String akt) {
-        String query = "SELECT Guide FROM Guide WHERE GUIDE_ID = ?";
+    public Partner getPartnerQuest(String partner) {
+        String query = "SELECT * FROM Partner WHERE Partnername = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, akt);
+            pstmt.setString(1, partner);
             ResultSet rs = pstmt.executeQuery();
-            return new Guide(rs.getString("Guide")
+            return new Partner(
+                    rs.getInt("Partner_ID"),
+                    rs.getString("Partnername"),
+                    rs.getString("Quest")
             );
         } catch (SQLException e) {
             e.printStackTrace();
@@ -134,12 +140,70 @@ public class DBSteuerung {
         return null;
     }
 
-    public Guide getNextAkt() {
+    public Guide getGuide(Integer akt) {
+        String query = "SELECT * FROM Guide WHERE GUIDE_ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, akt.toString());
+            ResultSet rs = pstmt.executeQuery();
+            Guide guide = new Guide(
+                    rs.getInt("Guide_ID"),
+                    rs.getString("Guide")
+            );
+            return guide;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
-    public Guide getPreviousAkt() {
+    public Guide getNextGuide(Integer akt) {
+        String query = "SELECT * FROM Guide WHERE GUIDE_ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, akt.toString());
+            ResultSet rs = pstmt.executeQuery();
+            Guide guide = new Guide(
+                    rs.getInt("Guide_ID"),
+                    rs.getString("Guide")
+            );
+            return guide;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
+    }
+
+    public Guide getPreviousGuide(Integer akt) {
+        String query = "SELECT * FROM Guide WHERE GUIDE_ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, akt.toString());
+            ResultSet rs = pstmt.executeQuery();
+            Guide guide = new Guide(
+                    rs.getInt("Guide_ID"),
+                    rs.getString("Guide")
+            );
+            return guide;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Guide> getFullGuide() {
+        List<Guide> fullGuide = new ArrayList<>();
+        String query = "SELECT * FROM Guide";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                Guide guide = new Guide(
+                        rs.getInt("Guide_ID"),
+                        rs.getString("Guide")
+                );
+                fullGuide.add(guide);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return fullGuide;
     }
 
     public void close() {

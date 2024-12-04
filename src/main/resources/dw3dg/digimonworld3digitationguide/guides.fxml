@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -33,7 +32,7 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <TextField fx:id="partnerQuestField" alignment="CENTER" prefHeight="25.0" prefWidth="150.0" promptText="Partnername" />
+                              <ComboBox fx:id="partnerQuestComboBox" prefHeight="25.0" prefWidth="150.0" promptText="Partner" />
                            </children>
                         </HBox>
                         <Button fx:id="partnerQuestButton" mnemonicParsing="false" onAction="#partnerQuestButton_Action" style="-fx-background-color: #00ff00;" text="Partner Quest">
@@ -50,13 +49,13 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <ComboBox fx:id="guideComboBox" prefWidth="200.0" promptText="Bitte Akt asuwählen" />
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                              <ComboBox fx:id="guideComboBox" prefHeight="25.0" prefWidth="100.0" promptText="Akt" />
+                              <HBox alignment="CENTER" prefHeight="25.0" prefWidth="75.0" spacing="5.0">
                                  <children>
-                                    <Button fx:id="aktPlusButton" mnemonicParsing="false" onAction="#aktPlusButton_Action" prefHeight="25.0" prefWidth="25.0" text="^" />
-                                    <Button fx:id="aktMinusButton" mnemonicParsing="false" onAction="#aktMinusButton_Action" prefHeight="25.0" prefWidth="25.0" text="v" />
+                                    <Button fx:id="aktMinusButton" mnemonicParsing="false" onAction="#aktMinusButton_Action" prefHeight="25.0" prefWidth="25.0" text="&lt;" />
+                                    <Button fx:id="aktPlusButton" mnemonicParsing="false" onAction="#aktPlusButton_Action" prefHeight="25.0" prefWidth="25.0" text="&gt;" />
                                  </children>
-                              </VBox>
+                              </HBox>
                            </children>
                         </HBox>
                         <Button fx:id="guideButton" mnemonicParsing="false" onAction="#guideButton_Action" style="-fx-background-color: #00ff00;" text="Komplettlösung">

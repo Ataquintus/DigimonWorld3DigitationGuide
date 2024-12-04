@@ -1,20 +1,30 @@
 package dw3dg.digimonworld3digitationguide.model;
 
 public class Partner {
-    private String name;
+    private int partnerID;
+    private String partnername;
     private String quest;
 
-    public Partner(String name, String quest) {
-        this.name = name;
+    public Partner(int partnerID, String Partnername, String quest) {
+        this.partnerID = partnerID;
+        this.partnername = Partnername;
         this.quest = quest;
     }
 
-    public String getName() {
-        return name;
+    public int getPartnerID() {
+        return partnerID;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPartnerID(int partnerID) {
+        this.partnerID = partnerID;
+    }
+
+    public String getPartnername() {
+        return partnername;
+    }
+
+    public void setPartnername(String partnername) {
+        this.partnername = partnername;
     }
 
     public String getQuest() {

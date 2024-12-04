@@ -23,20 +23,28 @@ public class Handler {
         return dw3dg.getDigitation(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2);
     }
 
-    public Partner getPartnerQuest(String partnername) {
-        return dw3dg.getPartnerQuest(partnername);
+    public Partner getPartnerQuest(String partner) {
+        return dw3dg.getPartnerQuest(partner);
     }
 
-    public Guide getGuide(String akt) {
+    public Guide getGuide(Integer akt) {
         return dw3dg.getGuide(akt);
     }
 
-    public Guide getNextAkt() {
-        return dw3dg.getNextAkt();
+    public Guide getNextGuide(Integer akt) {
+        return dw3dg.getNextGuide(akt);
     }
 
-    public Guide getPreviousAkt() {
-        return dw3dg.getPreviousAkt();
+    public Guide getPreviousGuide(Integer akt) {
+        return dw3dg.getPreviousGuide(akt);
+    }
+
+    public List<Guide> getGuideComboBoxMenu() {
+        return dw3dg.getFullGuide();
+    }
+
+    public List<Partner> getPartnerQuestMenu() {
+        return dw3dg.getPartnerQuestMenu();
     }
 
     public void close() {
