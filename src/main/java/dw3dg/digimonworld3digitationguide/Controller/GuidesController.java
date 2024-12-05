@@ -78,7 +78,7 @@ public class GuidesController implements Initializable {
             akt = 33;
         }
         guideComboBox.setValue(akt);
-        textAreaField.setText(handler.getNextGuide(akt).getGuide());
+        textAreaField.setText(handler.getGuide(akt).getGuide());
     }
 
     @FXML
@@ -93,7 +93,7 @@ public class GuidesController implements Initializable {
             akt = 1;
         }
         guideComboBox.setValue(akt);
-        textAreaField.setText(handler.getNextGuide(akt).getGuide());
+        textAreaField.setText(handler.getGuide(akt).getGuide());
     }
 
     @FXML
@@ -102,14 +102,13 @@ public class GuidesController implements Initializable {
             showAlert("Fehler", "Bitte wähle einen Akt aus der Liste aus.");
             return;
         }
-        String partner = String.valueOf(partnerQuestComboBox.getValue());
-        textAreaField.setText(handler.getPartnerQuest(partner).getQuest());
+        textAreaField.setText(handler.getPartner(String.valueOf(partnerQuestComboBox.getValue())).getQuest());
     }
 
     @FXML
     public List<Integer> guideComboBoxMenu() {
         List<Integer> aktList = new ArrayList<>();
-        for (Guide g : handler.getGuideComboBoxMenu()) {
+        for (Guide g : handler.getFullGuide()) {
             aktList.add(g.getGuideID());
         }
         return aktList;
@@ -118,12 +117,11 @@ public class GuidesController implements Initializable {
     @FXML
     public List<String> partnerQuestComboBoxMenu() {
         List<String> partnerList = new ArrayList<>();
-        for (Partner p : handler.getPartnerQuestMenu()) {
+        for (Partner p : handler.getAllPartner()) {
             partnerList.add(p.getPartnername());
         }
         return partnerList;
     }
-
 
     @FXML
     public void beendenButton_Action(ActionEvent event) {

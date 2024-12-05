@@ -1,6 +1,6 @@
 package dw3dg.digimonworld3digitationguide.repos;
 
-import dw3dg.digimonworld3digitationguide.model.Digitation;
+import dw3dg.digimonworld3digitationguide.model.Digitationsbedingung;
 import dw3dg.digimonworld3digitationguide.model.Guide;
 import dw3dg.digimonworld3digitationguide.model.Partner;
 
@@ -19,8 +19,8 @@ public class DBSteuerung {
         }
     }
 
-    public List<Digitation> getAllDigitation() {
-        List<Digitation> digitationList = new ArrayList<>();
+    public List<Digitationsbedingung> getAllDigitationsbedingung() {
+        List<Digitationsbedingung> digitationsbedingungList = new ArrayList<>();
         String query = "SELECT Partner.Partnername, " +
                 "Digitation.Digitationsname, " +
                 "Digitationsstufe.Stufenname, " +
@@ -40,7 +40,7 @@ public class DBSteuerung {
         try (Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                Digitation digitation = new Digitation(
+                Digitationsbedingung digitationsbedingung = new Digitationsbedingung(
                         rs.getString("Partnername"),
                         rs.getString("Digitationsname"),
                         rs.getString("Stufenname"),
@@ -50,16 +50,16 @@ public class DBSteuerung {
                         rs.getString("Level2"),
                         rs.getString("Wertebedingung")
                 );
-                digitationList.add(digitation);
+                digitationsbedingungList.add(digitationsbedingung);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return digitationList;
+        return digitationsbedingungList;
     }
 
-    public List<Digitation> getDigitation(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String vordigitation2) {
-        List<Digitation> digitationList = new ArrayList<>();
+    public List<Digitationsbedingung> getDigitationsbedingung(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String vordigitation2) {
+        List<Digitationsbedingung> digitationsbedingungList = new ArrayList<>();
         String query = "SELECT Partner.Partnername, " +
                 "Digitation.Digitationsname, " +
                 "Digitationsstufe.Stufenname, " +
@@ -76,16 +76,29 @@ public class DBSteuerung {
                 "JOIN Levelbedingung AS Levelbedingung1 ON Digitationsbedingung.Levelbedingung1_ID = Levelbedingung1.Levelbedingung_ID " +
                 "JOIN Vordigitation AS Vordigitation2 ON Digitationsbedingung.Vordigitation2_ID = Vordigitation2.Vordigitation_ID " +
                 "JOIN Levelbedingung AS Levelbedingung2 ON Digitationsbedingung.Levelbedungung2_ID = Levelbedingung2.Levelbedingung_ID " +
-                "WHERE Partnername = ? OR Digitationsname = ? OR Stufenname = ? OR Vordigitation1 = ? OR Vordigitation2 = ?";
+                "WHERE Partnername LIKE ? AND Digitationsname LIKE ? AND Stufenname LIKE ? AND (Vordigitation1 LIKE ? OR Vordigitation2 LIKE ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, partnername);
-            pstmt.setString(2, digitationsname);
-            pstmt.setString(3, digitationsstufe);
-            pstmt.setString(4, vordigitation1);
-            pstmt.setString(5, vordigitation2);
+            if (digitationsname.equals("Keine") || digitationsname.equals("null")) {
+                pstmt.setString(2, "%");
+            } else {
+                pstmt.setString(2, digitationsname);
+            }
+            if (digitationsstufe.equals("Keine") || digitationsstufe.equals("null")) {
+                pstmt.setString(3, "%");
+            } else {
+                pstmt.setString(3, digitationsstufe);
+            }
+            if (vordigitation1.equals("Keine") || vordigitation1.equals("null")){
+                pstmt.setString(4, "%");
+                pstmt.setString(5, "%");
+            } else {
+                pstmt.setString(4, vordigitation1);
+                pstmt.setString(5, vordigitation2);
+            }
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                Digitation digitation = new Digitation(
+                Digitationsbedingung digitationsbedingung = new Digitationsbedingung(
                         rs.getString("Partnername"),
                         rs.getString("Digitationsname"),
                         rs.getString("Stufenname"),
@@ -95,17 +108,17 @@ public class DBSteuerung {
                         rs.getString("Level2"),
                         rs.getString("Wertebedingung")
                 );
-                digitationList.add(digitation);
+                digitationsbedingungList.add(digitationsbedingung);
 
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return digitationList;
+        return digitationsbedingungList;
     }
 
-    public List<Partner> getPartnerQuestMenu() {
+    public List<Partner> getAllPartner() {
         List<Partner> allQuests = new ArrayList<>();
         String query = "SELECT * FROM Partner";
         try (Statement stmt = connection.createStatement()) {
@@ -124,7 +137,7 @@ public class DBSteuerung {
         return allQuests;
     }
 
-    public Partner getPartnerQuest(String partner) {
+    public Partner getPartner(String partner) {
         String query = "SELECT * FROM Partner WHERE Partnername = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, partner);
@@ -156,38 +169,6 @@ public class DBSteuerung {
         return null;
     }
 
-    public Guide getNextGuide(Integer akt) {
-        String query = "SELECT * FROM Guide WHERE GUIDE_ID = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, akt.toString());
-            ResultSet rs = pstmt.executeQuery();
-            Guide guide = new Guide(
-                    rs.getInt("Guide_ID"),
-                    rs.getString("Guide")
-            );
-            return guide;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public Guide getPreviousGuide(Integer akt) {
-        String query = "SELECT * FROM Guide WHERE GUIDE_ID = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, akt.toString());
-            ResultSet rs = pstmt.executeQuery();
-            Guide guide = new Guide(
-                    rs.getInt("Guide_ID"),
-                    rs.getString("Guide")
-            );
-            return guide;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public List<Guide> getFullGuide() {
         List<Guide> fullGuide = new ArrayList<>();
         String query = "SELECT * FROM Guide";
@@ -204,6 +185,48 @@ public class DBSteuerung {
             e.printStackTrace();
         }
         return fullGuide;
+    }
+
+    public List<String> getAllDigitation() {
+        List<String> digitationList = new ArrayList<>();
+        String query = "SELECT * FROM Digitation";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                digitationList.add(rs.getString("Digitationsname"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return digitationList;
+    }
+
+    public List<String> getAllDigitationsstufe() {
+        List<String> stufenList = new ArrayList<>();
+        String query = "SELECT * FROM Digitationsstufe";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                stufenList.add(rs.getString("Stufenname"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return stufenList;
+    }
+
+    public List<String> getAllVordigitation() {
+        List<String> vordigitationList = new ArrayList<>();
+        String query = "SELECT * FROM Vordigitation";
+        try (Statement stmt = connection.createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                vordigitationList.add(rs.getString("Vordigitationsname"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return vordigitationList;
     }
 
     public void close() {

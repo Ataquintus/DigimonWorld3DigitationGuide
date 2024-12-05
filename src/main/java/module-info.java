@@ -2,6 +2,7 @@ module dw3dg.digimonworld3digitationguide {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
     exports dw3dg.digimonworld3digitationguide.main;
     opens dw3dg.digimonworld3digitationguide.main to javafx.fxml;

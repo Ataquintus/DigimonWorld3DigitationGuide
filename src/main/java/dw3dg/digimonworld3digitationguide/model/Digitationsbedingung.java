@@ -1,6 +1,6 @@
 package dw3dg.digimonworld3digitationguide.model;
 
-public class Digitation {
+public class Digitationsbedingung {
     private String partnername;
     private String digitationsname;
     private String digitationsstufe;
@@ -10,7 +10,7 @@ public class Digitation {
     private String level2;
     private String wertebedingung;
 
-    public Digitation(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String level1, String vordigitation2, String level2, String wertebedingung) {
+    public Digitationsbedingung(String partnername, String digitationsname, String digitationsstufe, String vordigitation1, String level1, String vordigitation2, String level2, String wertebedingung) {
         this.partnername = partnername;
         this.digitationsname = digitationsname;
         this.digitationsstufe = digitationsstufe;

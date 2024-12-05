@@ -8,7 +8,8 @@ import java.util.ResourceBundle;
 
 import dw3dg.digimonworld3digitationguide.Handler.Handler;
 import dw3dg.digimonworld3digitationguide.main.Main;
-import dw3dg.digimonworld3digitationguide.model.Digitation;
+import dw3dg.digimonworld3digitationguide.model.Digitationsbedingung;
+import dw3dg.digimonworld3digitationguide.model.Partner;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,31 +42,31 @@ public class DigitationTableController implements Initializable {
     private ComboBox vordigitationComboBox;
 
     @FXML
-    private TableView<Digitation> tableView;
+    private TableView<Digitationsbedingung> tableView;
 
     @FXML
-    private TableColumn<Digitation, String> partnernameColumn;
+    private TableColumn<Digitationsbedingung, String> partnernameColumn;
 
     @FXML
-    private TableColumn<Digitation, String> digitationsnameColumn;
+    private TableColumn<Digitationsbedingung, String> digitationsnameColumn;
 
     @FXML
-    private TableColumn<Digitation, String> digitationsstufeColumn;
+    private TableColumn<Digitationsbedingung, String> digitationsstufeColumn;
 
     @FXML
-    private TableColumn<Digitation, String> vordigitation1Column;
+    private TableColumn<Digitationsbedingung, String> vordigitation1Column;
 
     @FXML
-    private TableColumn<Digitation, String> level1Column;
+    private TableColumn<Digitationsbedingung, String> level1Column;
 
     @FXML
-    private TableColumn<Digitation, String> vordigitation2Column;
+    private TableColumn<Digitationsbedingung, String> vordigitation2Column;
 
     @FXML
-    private TableColumn<Digitation, String> level2Column;
+    private TableColumn<Digitationsbedingung, String> level2Column;
 
     @FXML
-    private TableColumn<Digitation, String> wertebedingungColumn;
+    private TableColumn<Digitationsbedingung, String> wertebedingungColumn;
 
     @FXML
     private Button suchenButton;
@@ -79,14 +80,14 @@ public class DigitationTableController implements Initializable {
     @FXML
     public void suchenButton_Action(ActionEvent event) {
         if (partnernameComboBox.getValue() == null && digitationsnameComboBox.getValue() == null && digitationsstufeComboBox.getValue() == null && vordigitationComboBox.getValue() == null && vordigitationComboBox.getValue() == null) {
-            tableView.getItems().setAll(handler.getAllDigitationList());
+            tableView.getItems().setAll(handler.getAllDigitationsbedingung());
         } else {
             String partnername = String.valueOf(partnernameComboBox.getValue());
             String digitationsname = String.valueOf(digitationsnameComboBox.getValue());
             String digitationsstufe = String.valueOf(digitationsstufeComboBox.getValue());
             String vordigitation1 = String.valueOf(vordigitationComboBox.getValue());
             String vordigitation2 = String.valueOf(vordigitationComboBox.getValue());
-            tableView.getItems().setAll(handler.getDigitationList(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2));
+            tableView.getItems().setAll(handler.getDigitationsbedingung(partnername, digitationsname, digitationsstufe, vordigitation1, vordigitation2));
         }
     }
 
@@ -95,37 +96,28 @@ public class DigitationTableController implements Initializable {
     @FXML
     public List<String> partnernameComboBoxMenu() {
         List<String> partnerList = new ArrayList<>();
-        for (Digitation d : handler.getAllDigitationList()) {
-            partnerList.add(d.getPartnername());
+        for (Partner partner : handler.getAllPartner()) {
+            partnerList.add(partner.getPartnername());
         }
         return partnerList;
     }
 
     @FXML
     public List<String> digitationsnameComboBoxMenu() {
-        List<String> digitationList = new ArrayList<>();
-        for (Digitation d : handler.getAllDigitationList()) {
-            digitationList.add(d.getDigitationsname());
-        }
-        return digitationList;
+        return handler.getAllDigitation();
     }
 
     @FXML
     public List<String> digitationsstufeComboBoxMenu() {
-        List<String> stufenList = new ArrayList<>();
-        for (Digitation d : handler.getAllDigitationList()) {
-            stufenList.add(d.getDigitationsstufe());
-        }
-        return stufenList;
+        List<String> digitationsstufeList = new ArrayList<>();
+        digitationsstufeList.addAll(handler.getAllDigitationsstufe());
+        digitationsstufeList.removeFirst();
+        return digitationsstufeList;
     }
 
     @FXML
     public List<String> vordigitationComboBoxMenu() {
-        List<String> vordigitationList = new ArrayList<>();
-        for (Digitation d : handler.getAllDigitationList()) {
-            vordigitationList.add(d.getVordigitation1());
-        }
-        return vordigitationList;
+        return handler.getAllVordigitation();
     }
 
     @FXML
@@ -162,7 +154,7 @@ public class DigitationTableController implements Initializable {
         vordigitation2Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getVordigitation2()));
         level2Column.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getLevel2()));
         wertebedingungColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(cellData.getValue().getWertebedingung()));
-        tableView.getItems().addAll(handler.getAllDigitationList());
+        tableView.getItems().addAll(handler.getAllDigitationsbedingung());
         partnernameComboBox.getItems().addAll(partnernameComboBoxMenu());
         digitationsnameComboBox.getItems().addAll(digitationsnameComboBoxMenu());
         digitationsstufeComboBox.getItems().addAll(digitationsstufeComboBoxMenu());
