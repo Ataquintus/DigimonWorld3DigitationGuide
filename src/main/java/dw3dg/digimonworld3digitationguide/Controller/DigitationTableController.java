@@ -1,5 +1,6 @@
 package dw3dg.digimonworld3digitationguide.Controller;
 
+import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,7 +18,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class DigitationTableController implements Initializable {
 
@@ -78,7 +83,7 @@ public class DigitationTableController implements Initializable {
     private Button beendenButton;
 
     @FXML
-    public void suchenButton_Action(ActionEvent event) {
+    public void suchenButton_Action() {
         if (partnernameComboBox.getValue() == null && digitationsnameComboBox.getValue() == null && digitationsstufeComboBox.getValue() == null && vordigitationComboBox.getValue() == null && vordigitationComboBox.getValue() == null) {
             tableView.getItems().setAll(handler.getAllDigitationsbedingung());
         } else {
@@ -102,9 +107,29 @@ public class DigitationTableController implements Initializable {
         return partnerList;
     }
 
+    public void partnernameComboBoxAutofill() {
+        List<String> partnerList = new ArrayList<>();
+        for (Partner partner : handler.getAllPartner()) {
+            if (partner.getPartnername().contains(String.valueOf(partnernameComboBox.getValue()))) {
+                partnerList.add(partner.getPartnername());
+            }
+        }
+        partnernameComboBox.getItems().setAll(partnerList);
+    }
+    
     @FXML
     public List<String> digitationsnameComboBoxMenu() {
         return handler.getAllDigitation();
+    }
+
+    public void digitationsnameComboBoxAutofill() {
+        List<String> digitationList = new ArrayList<>();
+        for (String digitation : handler.getAllDigitation()) {
+            if (digitation.contains(String.valueOf(digitationsnameComboBox.getValue()))) {
+                digitationList.add(digitation);
+            }
+        }
+        digitationsnameComboBox.getItems().setAll(digitationList);
     }
 
     @FXML
@@ -115,9 +140,29 @@ public class DigitationTableController implements Initializable {
         return digitationsstufeList;
     }
 
+    public void digitationsstufeComboBoxAutofill() {
+        List<String> stufenList = new ArrayList<>();
+        for (String stufe : handler.getAllDigitationsstufe()) {
+            if (stufe.contains(String.valueOf(digitationsstufeComboBox.getValue()))) {
+                stufenList.add(stufe);
+            }
+        }
+        digitationsstufeComboBox.getItems().setAll(stufenList);
+    }
+
     @FXML
     public List<String> vordigitationComboBoxMenu() {
         return handler.getAllVordigitation();
+    }
+
+    public void vordigitationComboBoxAutofill() {
+        List<String> vordigitationList = new ArrayList<>();
+        for (String vordigitation : handler.getAllDigitation()) {
+            if (vordigitation.contains(String.valueOf(vordigitationComboBox.getValue()))) {
+                vordigitationList.add(vordigitation);
+            }
+        }
+        vordigitationComboBox.getItems().setAll(vordigitationList);
     }
 
     @FXML
