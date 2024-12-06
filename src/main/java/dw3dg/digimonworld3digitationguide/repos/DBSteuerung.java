@@ -36,7 +36,7 @@ public class DBSteuerung {
                 "JOIN Vordigitation AS Vordigitation1 ON Digitationsbedingung.Vordigitation1_ID = Vordigitation1.Vordigitation_ID " +
                 "JOIN Levelbedingung AS Levelbedingung1 ON Digitationsbedingung.Levelbedingung1_ID = Levelbedingung1.Levelbedingung_ID " +
                 "JOIN Vordigitation AS Vordigitation2 ON Digitationsbedingung.Vordigitation2_ID = Vordigitation2.Vordigitation_ID " +
-                "JOIN Levelbedingung AS Levelbedingung2 ON Digitationsbedingung.Levelbedungung2_ID = Levelbedingung2.Levelbedingung_ID";
+                "JOIN Levelbedingung AS Levelbedingung2 ON Digitationsbedingung.Levelbedingung2_ID = Levelbedingung2.Levelbedingung_ID";
         try (Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -75,7 +75,7 @@ public class DBSteuerung {
                 "JOIN Vordigitation AS Vordigitation1 ON Digitationsbedingung.Vordigitation1_ID = Vordigitation1.Vordigitation_ID " +
                 "JOIN Levelbedingung AS Levelbedingung1 ON Digitationsbedingung.Levelbedingung1_ID = Levelbedingung1.Levelbedingung_ID " +
                 "JOIN Vordigitation AS Vordigitation2 ON Digitationsbedingung.Vordigitation2_ID = Vordigitation2.Vordigitation_ID " +
-                "JOIN Levelbedingung AS Levelbedingung2 ON Digitationsbedingung.Levelbedungung2_ID = Levelbedingung2.Levelbedingung_ID " +
+                "JOIN Levelbedingung AS Levelbedingung2 ON Digitationsbedingung.Levelbedingung2_ID = Levelbedingung2.Levelbedingung_ID " +
                 "WHERE Partnername LIKE ? AND Digitationsname LIKE ? AND Stufenname LIKE ? AND (Vordigitation1 LIKE ? OR Vordigitation2 LIKE ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, partnername);
