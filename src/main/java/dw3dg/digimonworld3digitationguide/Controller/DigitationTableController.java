@@ -1,6 +1,5 @@
 package dw3dg.digimonworld3digitationguide.Controller;
 
-import java.beans.EventHandler;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -18,11 +17,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class DigitationTableController implements Initializable {
 
@@ -96,8 +91,6 @@ public class DigitationTableController implements Initializable {
         }
     }
 
-//    neue Methode einfügen anstelle von getAllDigitationList() für die ComboBoxen
-
     @FXML
     public List<String> partnernameComboBoxMenu() {
         List<String> partnerList = new ArrayList<>();
@@ -107,10 +100,11 @@ public class DigitationTableController implements Initializable {
         return partnerList;
     }
 
+    @FXML
     public void partnernameComboBoxAutofill() {
         List<String> partnerList = new ArrayList<>();
         for (Partner partner : handler.getAllPartner()) {
-            if (partner.getPartnername().contains(String.valueOf(partnernameComboBox.getValue()))) {
+            if (partner.getPartnername().contains(partnernameComboBox.getEditor().getText())) {
                 partnerList.add(partner.getPartnername());
             }
         }
@@ -122,6 +116,7 @@ public class DigitationTableController implements Initializable {
         return handler.getAllDigitation();
     }
 
+    @FXML
     public void digitationsnameComboBoxAutofill() {
         List<String> digitationList = new ArrayList<>();
         for (String digitation : handler.getAllDigitation()) {
@@ -140,6 +135,7 @@ public class DigitationTableController implements Initializable {
         return digitationsstufeList;
     }
 
+    @FXML
     public void digitationsstufeComboBoxAutofill() {
         List<String> stufenList = new ArrayList<>();
         for (String stufe : handler.getAllDigitationsstufe()) {
@@ -155,6 +151,7 @@ public class DigitationTableController implements Initializable {
         return handler.getAllVordigitation();
     }
 
+    @FXML
     public void vordigitationComboBoxAutofill() {
         List<String> vordigitationList = new ArrayList<>();
         for (String vordigitation : handler.getAllDigitation()) {
