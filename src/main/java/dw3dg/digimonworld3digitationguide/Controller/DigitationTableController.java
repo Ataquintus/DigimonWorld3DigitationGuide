@@ -120,7 +120,7 @@ public class DigitationTableController implements Initializable {
     public void digitationsnameComboBoxAutofill() {
         List<String> digitationList = new ArrayList<>();
         for (String digitation : handler.getAllDigitation()) {
-            if (digitation.contains(String.valueOf(digitationsnameComboBox.getValue()))) {
+            if (digitation.contains(String.valueOf(digitationsnameComboBox.getEditor().getText()))) {
                 digitationList.add(digitation);
             }
         }
@@ -139,7 +139,7 @@ public class DigitationTableController implements Initializable {
     public void digitationsstufeComboBoxAutofill() {
         List<String> stufenList = new ArrayList<>();
         for (String stufe : handler.getAllDigitationsstufe()) {
-            if (stufe.contains(String.valueOf(digitationsstufeComboBox.getValue()))) {
+            if (stufe.contains(String.valueOf(digitationsstufeComboBox.getEditor().getText()))) {
                 stufenList.add(stufe);
             }
         }
@@ -155,7 +155,7 @@ public class DigitationTableController implements Initializable {
     public void vordigitationComboBoxAutofill() {
         List<String> vordigitationList = new ArrayList<>();
         for (String vordigitation : handler.getAllDigitation()) {
-            if (vordigitation.contains(String.valueOf(vordigitationComboBox.getValue()))) {
+            if (vordigitation.contains(String.valueOf(vordigitationComboBox.getEditor().getText()))) {
                 vordigitationList.add(vordigitation);
             }
         }
@@ -199,7 +199,10 @@ public class DigitationTableController implements Initializable {
         tableView.getItems().addAll(handler.getAllDigitationsbedingung());
         partnernameComboBox.getItems().addAll(partnernameComboBoxMenu());
         digitationsnameComboBox.getItems().addAll(digitationsnameComboBoxMenu());
+        digitationsnameComboBox.getSelectionModel().selectLast();
         digitationsstufeComboBox.getItems().addAll(digitationsstufeComboBoxMenu());
+        digitationsstufeComboBox.getSelectionModel().selectLast();
         vordigitationComboBox.getItems().addAll(vordigitationComboBoxMenu());
+        vordigitationComboBox.getSelectionModel().selectLast();
     }
 }

@@ -39,10 +39,10 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="50.0" prefWidth="900.0" spacing="10.0">
                      <children>
-                        <ComboBox fx:id="partnernameComboBox" editable="true" onHidden="#partnernameComboBoxAutofill" onHiding="#partnernameComboBoxAutofill" onShowing="#partnernameComboBoxAutofill" onShown="#partnernameComboBoxAutofill" prefWidth="150.0" promptText="Partner" />
-                        <ComboBox fx:id="digitationsnameComboBox" editable="true" onInputMethodTextChanged="#digitationsnameComboBoxAutofill" prefWidth="150.0" promptText="Digitation" />
-                        <ComboBox fx:id="digitationsstufeComboBox" editable="true" onInputMethodTextChanged="#digitationsstufeComboBoxAutofill" prefWidth="150.0" promptText="Digitationsstufe" />
-                        <ComboBox fx:id="vordigitationComboBox" editable="true" onInputMethodTextChanged="#vordigitationComboBoxAutofill" prefWidth="150.0" promptText="Vordigitation" />
+                        <ComboBox fx:id="partnernameComboBox" editable="true" onKeyReleased="#partnernameComboBoxAutofill" prefWidth="150.0" promptText="Partner" />
+                        <ComboBox fx:id="digitationsnameComboBox" editable="true" onKeyReleased="#digitationsnameComboBoxAutofill" prefWidth="150.0" promptText="Digitation" />
+                        <ComboBox fx:id="digitationsstufeComboBox" editable="true" onKeyReleased="#digitationsstufeComboBoxAutofill" prefWidth="150.0" promptText="Digitationsstufe" />
+                        <ComboBox fx:id="vordigitationComboBox" editable="true" onKeyReleased="#vordigitationComboBoxAutofill" prefWidth="150.0" promptText="Vordigitation" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="75.0" prefWidth="900.0">
